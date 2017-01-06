@@ -1,7 +1,7 @@
+![alt tag](https://github.com/sytango-technologies/Hapiness/blob/master/assets/images/logo2.png)
+
 ## Hapiness
 Production ready Hapi boilerplate application with dual servers inbuilt.
-
-![alt tag](https://github.com/sytango-technologies/Hapiness/blob/master/assets/images/logo.png)
 
 ## Credits
 Thanks to ravisuhag/jolly for their wonderful boilerplate app which became the base of Hapiness.
