@@ -1,0 +1,24 @@
+<div>
+<div class="login-logo">
+    <img src="/images/logo.png" alt="Hapiness">
+</div>
+<div class="signup">
+ {{> flash}}
+ <form method="post">
+  <h2>Sign Up</h2>
+  <fieldset>
+    <input type="text" placeholder="Full Name" id="name" name="name" required/>
+    <input type="email" placeholder="Email" id="email" name="email" required/>
+    <input type="password" placeholder="Password" id="password" name="password" required/>
+    <input type="password" placeholder="Confirm Password" id="verify" name="verify" required/>
+  </fieldset>
+  <input type="submit" value="Sign Up" />
+  <div class="utilities">
+    <a href="/">&larr; Log In </a>
+    <a href="#">Forgot Password?</a>
+  </div>
+  {{> form_security}}
+ </form>
+</div>
+</div>
+

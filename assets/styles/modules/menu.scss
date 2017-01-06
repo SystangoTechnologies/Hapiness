@@ -1,0 +1,95 @@
+// Menu 
+$menu__border: 0;
+$menuItem__background: transparent;
+$menu__height: $eleHeight--base;
+$menuItem__padding: 0 30px;
+$menuItem__transition: opacity .1s ease;
+$menu__color: $color__foreground--light;
+$menu__color-hover: $color__foreground--dark;
+$menu__color-active: $color__foreground--darker;
+$menu__borderColor: $color__foreground--lightest;
+$menu__borderColor-hover: $color__foreground--lighter;
+// $menu__font-size: $text-sm;
+
+/* Default Menu
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+.menu {
+  display: block;
+  border: $menu__border;
+  margin: 0 0 $spacing--base 0
+}
+.menu-item {
+  line-height: $eleHeight--base;
+  position: relative;
+  display: inline-block;
+  height: $eleHeight--base;
+  padding: $menuItem__padding;
+  user-select: none;
+  transition: $menuItem__transition;
+  text-decoration: none;
+  color: $menu__color;
+  background: $menuItem__background;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+}
+.menu-item:hover,
+.menu-item:focus {
+  color: $menu__color-hover;
+}
+.menu-item.active,
+.menu-item.active:hover,
+.menu-item.active:focus {
+  font-weight: normal;
+  color: $menu__color-active;
+}
+
+/* Pointing Menu
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+.menu.menu--pointing .menu-item {
+  border-bottom: solid 2px transparent;
+}
+.menu.menu--pointing .menu-item.active {
+  border-bottom: solid 2px $menu__color-active;
+}
+.menu.menu--pointing-right .menu-item {
+  border-right: solid 1px transparent;
+}
+.menu.menu--pointing-right .menu-item.active {
+  border-right: solid 2px $menu__color-active;
+}
+
+/* Vertical Menu
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+.menu.menu--vertical .menu-item {
+  display: block;
+}
+
+/* Bordered Menu
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+.menu.menu--borderBottom {
+  border-bottom: solid 1px $menu__borderColor;
+}
+.menu.menu--borderRight {
+  border-right: solid 1px $menu__borderColor;
+}
+
+/* Wide Menu
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+
+.menu.menu--wide .menu-item {
+  height: $menu__height+8;
+  line-height: $menu__height+8;
+  padding: $menuItem__padding;
+}
+
+/* Menu Sizing
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+.menu--width-noraml{
+  width: 18rem;
+}
+
+

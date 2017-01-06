@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{meta.title}}</title>
+
+  <meta http-equiv="cleartype" content="on" />
+  <meta name="apple-mobile-web-app-capable" content="no">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+  
+  <link rel="stylesheet" media="all" href="/css/index.css">
+  
+  <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="echo">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  {{> header}}
+  {{{ content }}}
+  <script src="/js/vendor.js"></script>
+  <script src="/js/bundle.js"></script>
+</body>
+</html>
+
+

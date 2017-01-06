@@ -1,0 +1,38 @@
+.message {
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0;
+  background: rgba($color__foreground, .05);
+  padding: .9rem 1.5rem;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, .87);
+  border-radius: $borderRadius--base;
+  box-shadow: 0 0 0 1px rgba($color__foreground, 0.3) inset, 0 0 0 0 transparent;
+}
+.message li {
+  list-style: none
+}
+.message--error {
+  color: $color__error;
+  box-shadow: 0 0 0 1px rgba($color__error, 0.3) inset, 0 0 0 0 transparent;
+  background: rgba($color__error, .05);
+}
+.message--warning {
+  color: $color__warning;
+  box-shadow: 0 0 0 1px rgba($color__warning, 0.3) inset, 0 0 0 0 transparent;
+  background: rgba($color__warning, .05);
+}
+.message--success {
+  color: $color__success;
+  box-shadow: 0 0 0 1px rgba($color__success, 0.3) inset, 0 0 0 0 transparent;
+  background: rgba($color__success, .05);
+}
+.message-header {
+  display: block;
+  font-weight: 700;
+  margin: -.14285rem 0 3px -.18285rem;
+}
+.message ul,
+.message ul li:last-child {
+  margin-bottom: 0;
+}

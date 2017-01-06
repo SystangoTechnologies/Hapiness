@@ -1,0 +1,22 @@
+<div>
+<div class="login-logo">
+    <img src="/images/logo.png" alt="Hapiness">
+</div>
+<div class="login">
+ {{> flash}}
+ <form method='post'>
+  <h2>Log In</h2>
+  <fieldset>
+    <input type="email" placeholder="Email" name="email"/>
+    <input type="password" placeholder="Password" name="password"/>
+  </fieldset>
+  <input type="submit" value="Log In" />
+  <div class="utilities">
+    <a href="#">Forgot Password?</a>
+    <a href="signup">Sign Up &rarr;</a>
+  </div>
+  {{> form_security}}
+  </form>
+</div>
+</div>
+

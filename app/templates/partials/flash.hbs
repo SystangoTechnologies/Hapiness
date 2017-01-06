@@ -1,0 +1,42 @@
+{{!-- Display flash messages --}}
+{{!-- TODO : Code DRY --}}
+{{#if flash.success}}
+  <div class="message message--success">
+    {{!-- <div class="message-header">Errors</div> --}}
+    <ul>
+      {{#each flash.success}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+{{#if flash.error}}
+  <div class="message message--error">
+    {{!-- <div class="message-header">Errors</div> --}}
+    <ul>
+      {{#each flash.error}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+{{#if flash.warning}}
+  <div class="message message--warning">
+    {{!-- <div class="message-header">Errors</div> --}}
+    <ul>
+      {{#each flash.warning}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+{{#if flash.info}}
+  <div class="message message--info">
+    {{!-- <div class="message-header">Errors</div> --}}
+    <ul>
+      {{#each flash.info}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}

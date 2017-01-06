@@ -1,0 +1,161 @@
+/* Copyright 2016 Resumite Corporation
+
+dropdown.scss
+Dropdown module
+
+Syntax: componentName__<property>[--<modifier>]
+------------------------------------------------------------------------*/
+$dropdown__caretWidth: .3em !default;
+$dropdown__zIndex: 1000 !default;
+$dropdown__border: rgba(0, 0, 0, .15) !default;
+$dropdown__color: $color__foreground--light;
+$dropdown__color--hover: $color__foreground--dark;
+$dropdown__color--active: $color__foreground--darkest;
+$dropdown__borderColor: $color__foreground--lightest;
+$dropdown__borderColor--hover: $color__foreground--lighter;
+$dropdown__fontSize: $fontSize--small;
+$dropdown__bgColor : $color__background;
+
+// The dropdown wrapper (div)
+.dropup,
+.dropdown {
+  position: relative;
+}
+.dropdown-toggle {
+  // caret
+  &::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .25rem;
+    content: '';
+    vertical-align: middle;
+    border-top: $dropdown__caretWidth solid;
+    border-right: $dropdown__caretWidth solid transparent;
+    border-left: $dropdown__caretWidth solid transparent;
+  }
+  // Prevent the focus on the dropdown toggle when closing dropdowns
+  &:focus {
+    outline: 0;
+  }
+}
+.dropup {
+  .dropdown-toggle {
+    &::after {
+      border-top: 0;
+      border-bottom: $dropdown__caretWidth solid;
+    }
+  }
+}
+// The dropdown menu (ul)
+.dropdown-menu {
+  position: absolute;
+  z-index: $dropdown__zIndex;
+  top: 100%;
+  left: 0;
+  display: none;
+  float: left;
+  min-width: 160px;
+  margin: 2px 0 0;
+  padding: 5px 0;
+  list-style: none;
+  text-align: left;
+  border-radius: $borderRadius--base;
+  background: $dropdown__bgColor;
+  background-clip: padding-box;
+  box-shadow: $shadow--normal;
+}
+.dropdown-menu-pointing {
+  margin-top: 14px;
+}
+.dropdown-menu-pointing:before {
+  position: absolute;
+  display: block;
+  width: 14px;
+  height: 14px;
+  content: '';
+  -webkit-transform: rotate(45deg) translate(6px, 6px);
+  -ms-transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(6px, 6px);
+  background: $dropdown__bgColor;
+  box-shadow: -1px -1px 1px -1px rgba(0, 0, 0, .44);
+}
+.dropdown-menu-right.dropdown-menu-pointing:before {
+  top: -14px;
+  right: 10px;
+}
+.dropdown-menu-left.dropdown-menu-pointing:before {
+  top: -14px;
+  left: 10px;
+}
+// Links, buttons, and more within the dropdown menu
+.dropdown-item {
+  font-weight: normal;
+  display: block;
+  clear: both;
+  width: 100%; // For `<button>`s
+  padding: 4px 2rem;
+  text-align: inherit; // For `<button>`s
+  white-space: nowrap; // prevent links from randomly breaking onto new lines
+  color: $dropdown__color;
+  border: 0; // For `<button>`s
+  background: none; // For `<button>`s
+}
+.dropdown-item:hover {
+  color: $dropdown__color--hover;
+}
+.dropdown-item.small {
+  font-size: .88em
+}
+.dropdown-menu .divider {
+  height: 1px;
+  background-color: lighten($dropdown__color, 80%);
+  margin: 10px auto;
+}
+.open {
+  > .dropdown-menu {
+    display: block;
+  }
+  // Remove the outline when :focus is triggered
+  > a {
+    outline: 0;
+  }
+}
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+// This is only for left-aligning a dropdown menu within a `.navbar-right` or
+// `.pull-right` nav component.
+.dropdown-menu-left {
+  right: auto;
+  left: 0;
+}
+// Backdrop to catch body clicks on mobile, etc.
+.dropdown-backdrop {
+  position: fixed;
+  z-index: ($dropdown__zIndex - 10);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+// Right aligned dropdowns
+.pull-right > .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+.dropup {
+  // Reverse the caret
+  .caret {
+    content: '';
+    border-top: 0;
+    border-bottom: $dropdown__caretWidth solid;
+  }
+  // Different positioning for bottom up menu
+  .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+  }
+}
