@@ -1,6 +1,8 @@
 ## Hapiness
 Production ready Hapi boilerplate application with dual servers inbuilt.
 
+![alt tag](https://github.com/sytango-technologies/Hapiness/blob/master/assets/images/logo.png)
+
 ## Credits
 Thanks to ravisuhag/jolly for their wonderful boilerplate app which became the base of Hapiness.
 
@@ -96,7 +98,6 @@ $ gulp
 ```
 The servers should be running at [localhost:8000](https://localhost:8000) and [localhost:8001](https://localhost:8001).
 
-```
 ## Contributers
 
 Systango-Technologies
