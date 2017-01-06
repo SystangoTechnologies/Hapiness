@@ -96,7 +96,7 @@ $ npm install
 $ gulp
 
 ```
-The servers should be running at <br/> [localhost:8000](https://localhost:8000) and <br/> [localhost:8001](https://localhost:8001).
+The servers should be running at: <br/> 1) [localhost:8000](https://localhost:8000) and <br/> 2) [localhost:8001](https://localhost:8001)
 
 ## Contributers
 
