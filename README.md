@@ -4,7 +4,7 @@
 Production ready Hapi boilerplate application with dual servers inbuilt.
 
 ## Credits
-Thanks to ravisuhag/jolly for their wonderful boilerplate app which became the base of Hapiness.
+Thanks to [ravisuhag/jolly](https://github.com/ravisuhag/jolly) for his wonderful boilerplate app which became the base of Hapiness.
 
 ## Description
 'Hapiness' boilerplate application serves as a great starting point for all the Hapi.js developers who were looking for a platform for their production servers. This app instantiates two servers on startup:
