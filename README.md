@@ -9,7 +9,7 @@ Thanks to ravisuhag/jolly for their wonderful boilerplate app which became the b
 ## Description
 'Hapiness' boilerplate application serves as a great starting point for all the Hapi.js developers who were looking for a platform for their production servers. This app instantiates two servers on startup:
 
-1) localhost:8000 - Server for web application
+1) localhost:8000 - Server for web application <br />
 2) localhost:8001 - Server for mobile/Rest APIs
 
 Both the servers have their independent authentication mechanisms, the web application server uses the cookie based authentication and the api server uses the JWT authentication for the rest api access. The deployment and application management is done via 'Gulp' and there are different configurations/tasks for starting the app in the development vs the prodcution environment. This application assumes the availibility of 'MongoDB' installation on the localhost where the server will run.
@@ -96,9 +96,9 @@ $ npm install
 $ gulp
 
 ```
-The servers should be running at [localhost:8000](https://localhost:8000) and [localhost:8001](https://localhost:8001).
+The servers should be running at <br/> [localhost:8000](https://localhost:8000) and <br/> [localhost:8001](https://localhost:8001).
 
 ## Contributers
 
-Systango-Technologies
+[Systango-Technologies](https://github.com/sytango-technologies)
 
