@@ -1,4 +1,4 @@
-![alt tag](https://github.com/sytango-technologies/Hapiness/blob/master/assets/images/logo2.png)
+![Hapiness](https://github.com/sytango-technologies/Hapiness/blob/master/assets/images/logo2.png)
 
 ## Hapiness
 Production ready Hapi boilerplate application with dual servers inbuilt.
