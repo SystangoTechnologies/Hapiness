@@ -8,11 +8,11 @@
     "start": "node server.js",
     "test": "node node_modules/lab/bin/lab --verbose --colors"
   },
-  "keywords": [
-    "HapiJS"
-  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "author": "systango-technologies",
-  "homepage": "https://www.hapiness.com/",
+  "homepage": "https://github.com/sytango-technologies/Hapiness/blob/master/README.md",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "confidence": "^3.0.1",
@@ -62,5 +62,28 @@
     "react-dom": "^15.0.1",
     "require-dir": "^0.3.0",
     "webpack": "^1.12.14"
-  }
+  },
+  "keywords": [
+    "HAPI",
+    "hapi",
+    "hapijs",
+    "pm2",
+    "hapi-swagger",
+    "hapi server",
+    "api",
+    "node.js",
+    "hapi.js"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "systango-technologies",
+      "email": "engineering@systango.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sytango-technologies/Hapiness"
+  },
+  "version": "1.0.0",
 }
