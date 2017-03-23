@@ -1,0 +1,33 @@
+{{> header}}
+        
+{{> sidebar}}
+        
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 user_profile_detail pad-top-10">
+            <div class="col-md-6 pad-lft-none"><h3 class="text-left mar-bottom-20">Profile</h3></div>
+            <div class="col-md-6 pad-rgt-none text-right mar-top-22">
+              <a href="#x" id="edit_user" class="edit_del_btn mar-rgt-20"><img src="/images/edit_icon.png" class="mar-rgt-5"> Edit</a>
+              <a href="#x" class="edit_del_btn mar-lft-20"><img src="/images/trash.png" class="mar-rgt-5">Delete</a>
+            </div>
+
+            <div class="clearfix"></div>
+            <hr class="mar-top-none">
+            <div class="col-md-12 pad-lft-none mar-top-10">
+              <form method='post' class="users_detail" action="/profile/{{user.email}}">
+                <div class="col-md-12 pad-lft-none semi_bold">
+                  <img src="images/upload_user.png" class="mar-rgt-20">{{user.name}}
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-1 pad-lft-none mar-top-13 semi_bold pad-top-6">Email:</div>
+                <div class="col-md-4 mar-top-13"><div class="pad-top-6">{{user.email}}</div></div>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->

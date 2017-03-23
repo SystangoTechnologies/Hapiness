@@ -35,8 +35,8 @@ exports.postForm = {
     },
     validate: {
         payload: {
-            email: Joi.string().min(3).max(20).email().required(),
-            password: Joi.string().min(6).max(20).required()
+            email: Joi.string().min(3).email().required(),
+            password: Joi.string().min(5).required()
         },
         failAction: function(request, reply, source, error) {
             console.log('Username, passowrd minimum validation failed');

@@ -1,6 +1,6 @@
 {
   "name": "hapiness2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Production ready boilerplate application built on Hapi.js",
   "main": "index.js",
   "scripts": {
@@ -36,7 +36,9 @@
     "joi": "^9.0.4",
     "jsonwebtoken": "^7.2.1",
     "mongoose": "^4.4.10",
+    "nodemailer": "^3.1.7",
     "pm2": "^2.2.3",
+    "promise": "^7.1.1",
     "vision": "^4.0.1",
     "visionary": "^6.0.2",
     "yar": "^8.0.0"
@@ -84,6 +86,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sytango-technologies/Hapiness"
-  },
-  "version": "1.0.0"
+  }
 }

@@ -183,3 +183,96 @@
   margin-right: 5px;
   vertical-align: text-bottom;
 }
+
+.form-control {
+    height: 36px !important;
+    border-radius: 2px !important;
+}
+
+.form-control:focus {
+    border-color: #666 !important;
+    box-shadow: none !important;
+}
+
+.edit_del_btn {
+    color: #000000;
+    font-size: 16px;
+}
+
+.edit_del_btn img {
+    vertical-align: sub;
+}
+
+.edit_del_btn:hover,
+.edit_del_btn:focus {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.semi_bold {
+    font-weight: 600 !important;
+}
+
+.pad-lft-none {
+    padding-left: 0px !important;
+}
+
+.pad-rgt-none {
+    padding-right: 0px !important;
+}
+
+.pad-top-6 {
+    padding-top: 6px !important;
+}
+
+.mar-none {
+    margin: 0px !important;
+}
+
+.mar-top-none {
+    margin-top: 0px !important;
+}
+
+.mar-top-5 {
+    margin-top: 5px !important;
+}
+
+.mar-top-10 {
+    margin-top: 10px !important;
+}
+
+.mar-top-13 {
+    margin-top: 13px !important
+}
+
+.mar-top-20 {
+    margin-top: 20px !important;
+}
+
+.mar-top-22 {
+    margin-top: 22px;
+}
+
+.mar-bottom-20 {
+    margin-bottom: 20px !important
+}
+
+.mar-bottom-30 {
+    margin-bottom: 30px !important
+}
+
+.mar-rgt-5 {
+    margin-right: 5px !important;
+}
+
+.mar-rgt-10 {
+    margin-right: 10px;
+}
+
+.mar-rgt-20 {
+    margin-right: 20px !important;
+}
+
+.mar-lft-20 {
+    margin-left: 20px !important;
+}

@@ -26,9 +26,11 @@ internals.manifest = {
     },
     connections: [{
         port: Config.get('/port/web'),
+        tls: Config.get('/tlsOptions'),
         labels: ['web']
     },{
         port: Config.get('/port/api'),
+        tls: Config.get('/tlsOptions'),
         labels: ['api']
     }],
     registrations: [
@@ -46,6 +48,13 @@ internals.manifest = {
                 options: {
                     meta: Meta.get('/')
                 }
+            }
+        },
+        // Email connector 
+        {
+            plugin: {
+                register: './lib/email',
+                options: Config.get('/email')
             }
         },
         //  MongoDB connector 
@@ -93,21 +102,33 @@ internals.manifest = {
         {
             plugin: 'inert',
             options: {
-                select: ['web'] 
+                select: ['web', 'api'] 
             }
         },
         // Templates rendering support 
         {
             plugin: 'vision',
             options: {
-                select: ['web'] 
+                select: ['web', 'api']
             }
         },
         // Swagger support 
         {
-            plugin: 'hapi-swagger',
+            plugin: {
+                register: 'hapi-swagger',
+                options: {
+                    securityDefinitions: {
+                        'jwt': {
+                            'type': 'apiKey',
+                            'name': 'Authorization',
+                            'in': 'header'
+                        }
+                    },
+                    security: [{ 'jwt': [] }]
+                },
+            },
             options: {
-                select: ['web'] 
+                select: ['web', 'api']
             }
         },
         // Views loader 
@@ -212,6 +233,13 @@ internals.manifest = {
             plugin: './app/routes/jwtauth.js',
             options: {
                 select: ['api'] 
+            }
+        },
+        // web end routes.
+        {
+            plugin: './app/routes/web.js',
+            options: {
+                select: ['web'] //Restrcited availability of this plugin to 'web' server only
             }
         }
     ]

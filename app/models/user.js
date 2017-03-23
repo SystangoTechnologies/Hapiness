@@ -3,6 +3,9 @@
 const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
 const Crypto = require('crypto');
+const Nodemailer = require('nodemailer');
+//const gmailConfig = require('config').get('email.gmail');
+const Promise = require('promise');
 
 /**
  * User Schema
@@ -38,6 +41,12 @@ var UserSchema = new Schema({
             enum: ['user', 'admin']
         }],
         default: ['user']
+    },
+    resetPasswordToken: {
+        type : String   
+    },
+    resetPasswordExpires: {
+        type: Date   
     },
     updated: {
         type: Date
@@ -101,5 +110,100 @@ UserSchema.statics.findByCredentials = function(username, password, callback) {
     });
 };
 
+UserSchema.statics.updatePassword = function(request, reply, old_pwd, new_pwd) {
+    var self = this;
+    self.findOne({ email: request.auth.credentials.email }, function(err, user) {
+        if (err) {
+            request.yar.flash('error', 'Mongo error');
+            return reply.redirect('/setting');
+        }
+        if (!user || !user.authenticate(old_pwd)) {
+            request.yar.flash('error', 'incorrect current password');
+            reply.redirect('/setting');
+        } else {
+            //save new password
+            user.password = new_pwd;
+            user.save(function(err) {
+                if (err) {
+                    // Boom bad implementation
+                    request.yar.flash('error', 'An internal server error occurred');
+                    return reply.redirect('/setting');
+                } else {
+                    request.cookieAuth.set(user);
+                    request.yar.flash('success', 'Password updated successfully!');
+                    reply.redirect('/setting');
+                }
+            });
+        }
+    });
+};
+
+UserSchema.statics.generateResetPasswordToken = function(request, reply, email) {
+    var self = this;
+    const promise = new Promise(function(resolve, reject){
+        self.findOne({ email: email }, function(err, user) {
+            if (err) {
+                request.yar.flash('error', 'Mongo error');
+                return reply.redirect('/forgot');
+            }
+            if (!user) {
+                request.yar.flash('error', 'No  User Exists for Given Email');
+                return reply.redirect('/forgot');
+            } else {
+                var token = Crypto.randomBytes(20).toString('hex');
+                user.resetPasswordToken = token;
+                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+                user.save(function(err) {
+                    if(err) {
+                        request.yar.flash('error', 'Mongo error');
+                        return reply.redirect('/forgot');
+                    }
+                    resolve({
+                        request: request,
+                        reply: reply,
+                        to:email,
+                        token: token
+                    }); 
+                });
+            }
+        });
+    });
+    return promise;    
+};
+
+UserSchema.statics.resetForgotPassword = function(request, reply, newPassword, token) {
+    var self = this;
+    return new Promise(function(resolve, reject){
+        self.findOne({ resetPasswordToken: token }, function(err, user) {
+            if (err) {
+                return reject(err);
+            }
+            if (!user) {
+                return reject('Invalid Token');
+            } else {
+                var expireTime = user.resetPasswordExpires;
+                var currentTime = Date.now();
+
+                if(currentTime > expireTime) {
+                    return reject('Reset password link expired.');
+                } else {
+                    //save new password
+                    user.password = newPassword;
+                    user.resetPasswordToken = null;
+                    user.resetPasswordExpires = null;
+                    user.save(function(err) {
+                        if (err) {
+                            // Boom bad implementation
+                            return reject(err);
+                        } else {
+                            return resolve('Password updated successfully');
+                        }
+                    });
+                }
+            }
+        });
+    });
+};
 
 Mongoose.model('User', UserSchema);

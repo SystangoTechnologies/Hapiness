@@ -18,7 +18,11 @@
       		"port": 443,
       		"path": "/user_api/validate_user/"
     	}	
-      }
+    },
+    "login":{
+      // Third Party Flag config
+      "isThirdParty": false
+    }
   },
   // WEB module configs
   "web": {

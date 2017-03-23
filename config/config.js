@@ -2,6 +2,8 @@
 
 const Confidence = require('confidence');
 const dbConfig = require('config').get('database.mongo.' + process.env.NODE_ENV);
+const Fs = require('fs');
+const Path = require('path');
 
 // Confidence criteria 
 let internals = {
@@ -12,7 +14,6 @@ let internals = {
 
 
 //  Confidence document object
-
 internals.config = {
     $meta: 'App configuration file',
     port: {
@@ -28,6 +29,10 @@ internals.config = {
             production: process.env.API_PORT,
             $default: 8001
         }
+    },
+    tlsOptions: {
+        key: Fs.readFileSync(Path.join(__dirname, 'ssl/key.pem'), 'utf8'),
+        cert: Fs.readFileSync(Path.join(__dirname, 'ssl/cert.pem'), 'utf8')
     },
     baseUrl: {
         $filter: 'env',
@@ -47,6 +52,12 @@ internals.config = {
             uri: dbConfig.uri,
             options: {}
         }
+    },
+    email: {
+        email: process.env.GMAIL_ID,
+        password: process.env.GMAIL_PASSWORD,
+        senderEmail: process.env.GMAIL_SENDEREMAIL,
+        senderName : process.env.GMAIL_SENDERNAME
     },
     authCookie: {
         cookieSecret: process.env.COOKIE_SECRET,
