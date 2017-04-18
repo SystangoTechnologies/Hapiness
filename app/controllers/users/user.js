@@ -127,8 +127,23 @@ exports.sendPasswordResetLink = {
     },
     handler: function(request, reply) {
         var email = request.payload.email;
-        User.generateResetPasswordToken(request, reply, email)
-        .then(Email.sentForgotPasswordMail);
+        User.generateResetPasswordToken(email)
+        .then(function(data){
+            var baseURL = request.connection.info.uri;
+            Email.sentForgotPasswordMail(data, baseURL)
+            .then(function(message){
+                request.yar.flash('success', message);
+                return reply.redirect('/forgot');
+            })
+            .catch(function(error){
+                request.yar.flash('error', error);
+                return reply.redirect('/forgot');
+            });
+        })
+        .catch(function(error){
+            request.yar.flash('error', error);
+            return reply.redirect('/forgot');
+        });
     }
 };
 

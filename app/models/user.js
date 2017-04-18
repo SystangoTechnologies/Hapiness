@@ -138,17 +138,15 @@ UserSchema.statics.updatePassword = function(request, reply, old_pwd, new_pwd) {
     });
 };
 
-UserSchema.statics.generateResetPasswordToken = function(request, reply, email) {
+UserSchema.statics.generateResetPasswordToken = function(email) {
     var self = this;
-    const promise = new Promise(function(resolve, reject){
+    return new Promise(function(resolve, reject){
         self.findOne({ email: email }, function(err, user) {
             if (err) {
-                request.yar.flash('error', 'Mongo error');
-                return reply.redirect('/forgot');
+                return reject(err);
             }
             if (!user) {
-                request.yar.flash('error', 'No  User Exists for Given Email');
-                return reply.redirect('/forgot');
+                return reject('No  User Exists for Given Email');
             } else {
                 var token = Crypto.randomBytes(20).toString('hex');
                 user.resetPasswordToken = token;
@@ -156,20 +154,16 @@ UserSchema.statics.generateResetPasswordToken = function(request, reply, email) 
 
                 user.save(function(err) {
                     if(err) {
-                        request.yar.flash('error', 'Mongo error');
-                        return reply.redirect('/forgot');
+                        return reject(err);
                     }
-                    resolve({
-                        request: request,
-                        reply: reply,
+                    return resolve({
                         to:email,
                         token: token
                     }); 
                 });
             }
         });
-    });
-    return promise;    
+    });   
 };
 
 UserSchema.statics.resetForgotPassword = function(request, reply, newPassword, token) {
