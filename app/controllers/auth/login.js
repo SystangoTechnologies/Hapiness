@@ -13,7 +13,8 @@ exports.showForm = {
     handler: function(request, reply) {
 
         if (request.auth.isAuthenticated) {
-            return reply.redirect('/dashboard');
+            var userDetails = request.auth.credentials;
+            return reply.redirect('/dashboard', {user: userDetails});
         }
         reply.view('auth/login');
 

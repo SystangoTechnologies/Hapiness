@@ -1,23 +1,16 @@
-{{> header}}
-        
-{{> sidebar}}
-        
+{{> header}}        
+{{> sidebar}}        
 <!-- Page Content -->
 <div id="page-content-wrapper" class="content-wrapper">
 <section class="content">
-
       <div class="row">
         <div class="col-md-3">
-
           <!-- Profile Image -->
           <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-
-              <h3 class="profile-username text-center">Nina Mcintire</h3>
-
+            <div class="box-body box-profile">              
+              <img src="/images/user2-160x160.jpg" class="profile-user-img img-responsive img-circle" alt="User Image">             
+              <h3 class="profile-username text-center">{{user.name}}</h3>
               <p class="text-muted text-center">Software Engineer</p>
-
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
                   <b>Followers</b> <a class="pull-right">1,322</a>
@@ -29,13 +22,11 @@
                   <b>Friends</b> <a class="pull-right">13,287</a>
                 </li>
               </ul>
-
               <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
           <!-- About Me Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -44,13 +35,10 @@
             <!-- /.box-header -->
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
               <p class="text-muted">
                 B.S. in Computer Science from the University of Tennessee at Knoxville
               </p>
-
               <hr>
-
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
               <p class="text-muted">Malibu, California</p>
@@ -89,8 +77,8 @@
               <div class="active tab-pane" id="activity">
                 <!-- Post -->
                 <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                  <div class="user-block">                    
+                    <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">                   
                         <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -121,7 +109,7 @@
                 <!-- Post -->
                 <div class="post clearfix">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                    <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">
                         <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -153,7 +141,7 @@
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+                    <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">
                         <span class="username">
                           <a href="#">Adam Jones</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -163,21 +151,21 @@
                   <!-- /.user-block -->
                   <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                      <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
+                          <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">
                           <br>
-                          <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
+                          <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
+                          <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">
                           <br>
-                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                          <img src="/images/user2-160x160.jpg" class="img-circle img-bordered-sm" alt="User Image">
                         </div>
                         <!-- /.col -->
                       </div>
@@ -282,10 +270,10 @@
                       <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
 
                       <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="/images/user2-160x160.jpg" class="margin" alt="User Image">
+                        <img src="/images/user2-160x160.jpg" class="margin" alt="User Image">
+                        <img src="/images/user2-160x160.jpg" class="margin" alt="User Image">
+                        <img src="/images/user2-160x160.jpg" class="margin" alt="User Image">
                       </div>
                     </div>
                   </li>
@@ -296,58 +284,34 @@
                 </ul>
               </div>
               <!-- /.tab-pane -->
-
-              <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
+              <div class="tab-pane" id="settings">  
+                {{> flash}}              
+                <form method='post' class="form-horizontal form_submit" action="/password" >
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
+                    <label for="inputName" class="col-sm-2 control-label">Current Password</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
+                      <input type="password" name="oldPassword" class="form-control" placeholder="">                      
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                    <label for="inputEmail" class="col-sm-2 control-label">New Password</label>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    <div class="col-sm-10">                      
+                      <input type="password" name="newPassword" class="form-control" placeholder="">                      
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
+                    <label for="inputName" class="col-sm-2 control-label">Confirm Password</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                      <input type="password" name="confirmNewPassword" class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
+                      <button type="submit" class="btn btn-danger">Save</button>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
+                  {{> form_security}}
                 </form>
               </div>
               <!-- /.tab-pane -->
@@ -361,31 +325,5 @@
       <!-- /.row -->
 
     </section>
-
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12 user_profile_detail pad-top-10">
-            <div class="col-md-6 pad-lft-none"><h3 class="text-left mar-bottom-20">Profile</h3></div>
-            <div class="col-md-6 pad-rgt-none text-right mar-top-22">
-              <a href="#x" id="edit_user" class="edit_del_btn mar-rgt-20"><img src="/images/edit_icon.png" class="mar-rgt-5"> Edit</a>
-              <a href="#x" class="edit_del_btn mar-lft-20"><img src="/images/trash.png" class="mar-rgt-5">Delete</a>
-            </div>
-
-            <div class="clearfix"></div>
-            <hr class="mar-top-none">
-            <div class="col-md-12 pad-lft-none mar-top-10">
-              <form method='post' class="users_detail" action="/profile/{{user.email}}">
-                <div class="col-md-12 pad-lft-none semi_bold">
-                  <img src="images/upload_user.png" class="mar-rgt-20">{{user.name}}
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-md-1 pad-lft-none mar-top-13 semi_bold pad-top-6">Email:</div>
-                <div class="col-md-4 mar-top-13"><div class="pad-top-6">{{user.email}}</div></div>
-                <div class="clearfix"></div>
-              </form>
-            </div>
-          </div>
-        </div>
-    </div>
 </div>
 <!-- /#page-content-wrapper -->

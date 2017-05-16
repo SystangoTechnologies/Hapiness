@@ -9,7 +9,8 @@ exports.showDashboard = {
     handler: function(request, reply) {
 
         if (request.auth.isAuthenticated) {
-            reply.view('dashboard/dashboard');
+            var userDetails = request.auth.credentials;
+            reply.view('dashboard/dashboard', {user: userDetails});
         }
     },
     tags: ['api'] //swagger documentation

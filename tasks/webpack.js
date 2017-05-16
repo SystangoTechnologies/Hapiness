@@ -5,7 +5,7 @@ const Webpack = require('webpack');
 
 var webpackConfig = {
     entry: {
-        vendor: ['jquery','bootstrap'],
+        vendor: ['jquery','bootstrap','chart.js'],
         app: './assets/scripts/index.js'
     },
     output: {

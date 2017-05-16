@@ -24,7 +24,7 @@ body {
 }
 /* Layout */
 .wrapper {
-  height: 100%;
+  height: 100% !important;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
@@ -547,11 +547,11 @@ a:focus {
   margin-top: -8px;
 }
 .sidebar-menu li.active > a > .fa-angle-left,
-.sidebar-menu li.active > a > .pull-right-container > .fa-angle-left {
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+.sidebar-menu li.active > a > .pull-right-container > .fa-angle-right {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .sidebar-menu li.active > .treeview-menu {
   display: block;
@@ -924,8 +924,7 @@ a:focus {
  * -------------------------
  */
 /*Dropdowns in general*/
-.dropdown-menu {
-  box-shadow: none;
+.dropdown-menu {  
   border-color: #eee;
 }
 .dropdown-menu > li > a {
@@ -4938,3 +4937,9 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+.icheckbox_square-blue  > label {
+    padding-left: 0;
+}
+
+.wrapper, body , html{height:100% !important;}

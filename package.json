@@ -15,6 +15,7 @@
   "homepage": "https://github.com/sytango-technologies/Hapiness/blob/master/README.md",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "chart.js": "^2.5.0",
     "confidence": "^3.0.1",
     "config": "^1.24.0",
     "crumb": "^6.0.0",
