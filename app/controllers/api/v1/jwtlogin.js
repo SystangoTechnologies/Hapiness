@@ -7,6 +7,7 @@ const Mongoose = require('mongoose');
 const User = Mongoose.model('User');
 const loginHelper = require('../../../helpers/login');
 
+// validate user login.
 exports.postCredentials = {
     description: 'jwt login',
     auth : false,

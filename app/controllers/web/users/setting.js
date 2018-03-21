@@ -3,7 +3,7 @@ const Mongoose = require('mongoose');
 const User = Mongoose.model('User');
 const Joi = require('joi');
 const Email = require('../email/email');
-const settingHelper = require('../../helpers/setting');
+const settingHelper = require('../../../helpers/setting');
 
 //get admin password change page
 exports.setting = {

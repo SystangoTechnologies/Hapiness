@@ -14,7 +14,8 @@ let internals = {
 internals.manifest = {
     $meta: 'App manifest document',
     server: {
-        address : '127.0.0.1',
+        address : 'localhost',
+        host : 'localhost',
         port: 8000
     },
     register: {
@@ -155,6 +156,9 @@ internals.manifest = {
         // web end routes.
         {
             plugin: './app/routes/webApi/web.js'
+        },
+        {
+            plugin: './app/routes/webApi/setting.js'
         },
         /* ----------------- End web apiroutes  -------------- */
 
