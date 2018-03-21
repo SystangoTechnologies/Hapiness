@@ -3,12 +3,11 @@
 var Gulp = require('gulp');
 var RevAll = require('gulp-rev-all');
 
-var revAll = new RevAll();
 
 Gulp.task('rev', ['styles'], function() {
     return Gulp.src(['.build/css/index.css'])
-        .pipe(revAll.revision())
+        .pipe(RevAll.revision())
         .pipe(Gulp.dest('.build'))
-        .pipe(revAll.manifestFile())
+        .pipe(RevAll.manifestFile())
         .pipe(Gulp.dest('.build'));
 });

@@ -3,7 +3,7 @@
 const Confidence = require('confidence');
 const Config = require('./config');
 const Meta = require('./meta');
-
+const Pack = require('../package');
 
 let internals = {
     criteria: {
@@ -14,70 +14,47 @@ let internals = {
 internals.manifest = {
     $meta: 'App manifest document',
     server: {
-        connections: {
-            router: {
-                stripTrailingSlash: true,
-                isCaseSensitive: false
-            },
-            routes: {
-                security: true
-            }
-        }
+        address : '127.0.0.1',
+        port: 8000
     },
-    connections: [{
-        port: Config.get('/port/web'),
-        tls: Config.get('/tlsOptions'),
-        labels: ['web']
-    },{
-        port: Config.get('/port/api'),
-        tls: Config.get('/tlsOptions'),
-        labels: ['api']
-    }],
-    registrations: [
-
-        //**************************************************************
+    register: {
+        plugins : [
+               //**************************************************************
         //                                                             *
         //                      COMMON PLUGINS                         *
         //                                                             *
         //**************************************************************
 
-        //  App context decorator
+        // //  App context decorator
         {
-            plugin: {
-                register: './lib/context',
-                options: {
-                    meta: Meta.get('/')
-                }
+            plugin: './lib/context',
+            options: {
+                meta: Meta.get('/')
             }
         },
         // Email connector 
         {
-            plugin: {
-                register: './lib/email',
-                options: Config.get('/email')
-            }
+            plugin: './lib/email',
+            options: Config.get('/email')
         },
         //  MongoDB connector 
         {
-            plugin: {
-                register: './lib/mongoose',
-                options: Config.get('/mongoose')
-            }
+            plugin : './lib/mongoose',
+            options: Config.get('/mongoose')
+            
         },
-        //  Logging connector 
+        // //  Logging connector 
         {
-            plugin: {
-                register: 'good',
-                options: Config.get('/good')
-            }
+            plugin:  'good',
+            options: Config.get('/good')
         },
 
-        //**************************************************************
-        //                                                             *
-        //                      WEB PLUGINS                            *
-        //                                                             *
-        //**************************************************************
-        // Cookie authentication
+        // //**************************************************************
+        // //                                                             *
+        // //                      WEB PLUGINS                            *
+        // //                                                             *
+        // //**************************************************************
+        // // Cookie authentication
         {
             plugin: 'hapi-auth-cookie',
             options: {
@@ -86,37 +63,34 @@ internals.manifest = {
         },
         //  Crumb
         {
-            plugin: {
-                register: 'crumb',
+            plugin:'crumb',
                 options: {
                     cookieOptions: {
                         isSecure: false
+                    },
+                    skip: function(request, reply) {
+                        // to disable it for the save-email method
+                        if (request.path && request.path.indexOf('/api/') > -1) {
+                            return true;
+                        }
                     }
-                }
-            },
-            options: {
-                select: ['web'] 
             }
         },
         // Static file and directory handlers
         {
-            plugin: 'inert',
-            options: {
-                select: ['web', 'api'] 
-            }
+            plugin: 'inert'
         },
-        // Templates rendering support 
         {
-            plugin: 'vision',
-            options: {
-                select: ['web', 'api']
-            }
+            plugin: 'vision'
         },
         // Swagger support 
         {
-            plugin: {
-                register: 'hapi-swagger',
-                options: {
+            plugin: 'hapi-swagger',
+            options: {
+                    info: {
+                        title: 'Test API Documentation',
+                        version: Pack.version,
+                    },
                     securityDefinitions: {
                         'jwt': {
                             'type': 'apiKey',
@@ -125,124 +99,78 @@ internals.manifest = {
                         }
                     },
                     security: [{ 'jwt': [] }]
-                },
-            },
-            options: {
-                select: ['web', 'api']
-            }
-        },
-        // Views loader 
-        {
-            plugin: {
-                register: 'visionary',
-                options: {
-                    engines: {
-                        hbs: 'handlebars'
-                    },
-                    path: './app/templates',
-                    layoutPath: './app/templates/layouts',
-                    helpersPath: './app/templates/helpers',
-                    partialsPath: './app/templates/partials',
-                    layout: 'default'
                 }
-            },
-            options: {
-                select: ['web'] 
-            }
         },
+        // // Views loader 
+       
         // Flash Plugin
         {
-            plugin: {
-                register: './lib/flash'
-            },
-            options: {
-                select: ['web'] 
-            }
+            plugin: './lib/flash'
         },
         // Hapi cookie jar
         {
-            plugin: {
-                register: 'yar',
-                options: Config.get('/yarCookie')
-            },
-            options: {
-                select: ['web'] 
-            }
+            plugin: 'yar',
+            options: Config.get('/yarCookie')
         },
         //  Authentication strategy
         {
-            plugin: {
-                register: './lib/auth',
-                options: Config.get('/authCookie')
-            },
-            options: {
-                select: ['web'] 
-            }
+            plugin: './lib/auth',
+            options: Config.get('/authCookie')
         },
 
-        //**************************************************************
-        //                                                             *
-        //                      API PLUGINS                            *
-        //                                                             *
-        //**************************************************************
+        // //**************************************************************
+        // //                                                             *
+        // //                      API PLUGINS                            *
+        // //                                                             *
+        // //**************************************************************
 
         // JWT authentication
         {
             plugin: 'hapi-auth-jwt2',
-            options: {
-                select: ['api'] 
-            }
         },
         //  JWT-Authentication strategy
         {
-            plugin: {
-                register: './lib/jwtAuth',
-                options: Config.get('/jwtAuthOptions')
-            },
-            options: {
-                select: ['api'] 
-            }
+            plugin:  './lib/jwtAuth',
+            options: Config.get('/jwtAuthOptions')
         },
     
-        //**************************************************************
-        //                                                             *
-        //                      APPLICATION ROUTES                     *
-        //                                                             *
-        //**************************************************************
-
-        //  Core routes
+        // //**************************************************************
+        // //                                                             *
+        // //                      APPLICATION ROUTES                     *
+        // //                                                             *
+        // //**************************************************************
+        
+        /* ----------------- Start web api routes -------------- */
         {
-            plugin: './app/routes/core.js'
+            plugin: './app/routes/webApi/core.js'
         },
         //  Auth routes
         {
-            plugin: './app/routes/auth.js',
-            options: {
-                select: ['web'] 
-            }
+            plugin: './app/routes/webApi/auth.js'
         },
         //  Dashboard routes
         {
-            plugin: './app/routes/dashboard.js',
-            options: {
-                select: ['web']
-            }
-        },
-        //  Auth routes
-        {
-            plugin: './app/routes/jwtauth.js',
-            options: {
-                select: ['api'] 
-            }
+            plugin: './app/routes/webApi/dashboard.js'
         },
         // web end routes.
         {
-            plugin: './app/routes/web.js',
-            options: {
-                select: ['web'] //Restrcited availability of this plugin to 'web' server only
-            }
+            plugin: './app/routes/webApi/web.js'
+        },
+        /* ----------------- End web apiroutes  -------------- */
+
+        /* ----------------- Start mobile api routes -------------- */
+            /* Version v1 apis */
+        {
+            plugin: './app/routes/mobileApi/v1/jwtauth.js'
+        },
+           /* Version v2 apis */
+        {
+            plugin: './app/routes/mobileApi/v2/jwtauth.js'
         }
-    ]
+        /* ----------------- End mobile api routes -------------- */
+
+        ]
+    }
 };
 
 internals.store = new Confidence.Store(internals.manifest);

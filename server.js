@@ -1,14 +1,34 @@
 'use strict';
 
-const Composer = require('./index');
 const Hoek = require('hoek');
+const Manifest = require('./config/manifest');
+const Glue = require('glue');
+const Handlebars = require('handlebars');
 
-Composer(function(err, server) {
-    Hoek.assert(!err, err);
-    server.start(function() {
-      // Log to the console the host and port info
-      server.connections.forEach(function(connection) {
-           console.log('Server started at: ' + connection.info.uri);
-      });
-    });
-});
+const composeOptions = {
+    relativeTo: __dirname
+};
+
+async function startServer () {
+    try {
+        var server = await Glue.compose(Manifest.get('/'), composeOptions);
+        server.views({
+            engines: {
+                hbs: Handlebars
+            },
+            path: './app/templates',
+            layoutPath: './app/templates/layouts',
+            helpersPath: './app/templates/helpers',
+            partialsPath: './app/templates/partials',
+            layout: 'default'
+        });
+        await server.start();
+        console.log('hapi days!');
+    }
+    catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
+}
+
+startServer();

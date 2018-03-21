@@ -1,11 +1,12 @@
 'use strict';
 
-exports.register = function(plugin, options, next) {
-
+exports.plugin = {  
+    register: (plugin, options) => {
+       
     var Controllers = {
         core: {
-            fallback: require('../controllers/core/fallback'),
-            static: require('../controllers/core/static')
+            fallback: require('../../controllers/web/core/fallback'),
+            static: require('../../controllers/web/core/static')
         }
     };
 
@@ -56,13 +57,8 @@ exports.register = function(plugin, options, next) {
             path: '/{p*}',
             config: Controllers.core.fallback.notfound
         }
-
     ]);
-
-    next();
-};
-
-exports.register.attributes = {
-    name: 'core_routes',
-    version: require('../../package.json').version
+    },
+    pkg: require('../../../package.json'),
+    name : 'core_routes'
 };

@@ -11,11 +11,9 @@ module.exports = {
             restful: true
         }
     },
-    handler: function(request, reply) {
-
+    handler: async (request, h) => {
         request.cookieAuth.clear();
         request.yar.flash('success', 'Logged out successfully');
-        return reply.redirect('/login');
-
+        return h.redirect('/login');
     }
 };

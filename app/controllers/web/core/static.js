@@ -29,7 +29,7 @@ exports.favicon = {
 
 exports.heartbeat = {
     auth: false,
-    handler: function(request, reply) {
-        reply('OK');
+    handler: async (request, h) => {
+        return 'ok';
     }
 };

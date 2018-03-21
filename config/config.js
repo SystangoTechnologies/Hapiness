@@ -1,7 +1,6 @@
 'use strict';
 
 const Confidence = require('confidence');
-const dbConfig = require('config').get('database.mongo.' + process.env.NODE_ENV);
 const Fs = require('fs');
 const Path = require('path');
 
@@ -43,13 +42,13 @@ internals.config = {
     mongoose: {
         $filter: 'env',
         production: {
-            uri: dbConfig.uri
+            uri: process.env.DATABASE_URL
         },
         test: {
-            uri: dbConfig.uri
+            uri: process.env.DATABASE_URL
         },
         $default: {
-            uri: dbConfig.uri,
+            uri: process.env.DATABASE_URL   ,
             options: {}
         }
     },
