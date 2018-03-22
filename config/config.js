@@ -86,7 +86,30 @@ internals.config = {
                 args: [{ log: '*', response: '*' }]
             }, {
                 module: 'good-console'
-            }, 'stdout']
+            }, 'stdout'],
+            myFileReporter: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{ error: '*', response: '*',log : '*',  request: '*' }]
+            }, {
+                module: 'good-squeeze',
+                name: 'SafeJson'
+            }, {
+                module: 'good-file',
+                args: ['./logs/log']
+            }],
+            myHTTPReporter: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{ error: '*' }]
+            }, {
+                module: 'good-http',
+                args: ['http://localhost:8000/logs', {
+                    wreck: {
+                        headers: { 'x-api-key': 12345 }
+                    }
+                }]
+            }]
         }
     }
 };

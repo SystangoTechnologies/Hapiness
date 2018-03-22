@@ -13,4 +13,4 @@ exports.findUserDetails = async (userId)=>{
             return reject(error);
         }
     });
-}
+};

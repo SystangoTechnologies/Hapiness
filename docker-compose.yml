@@ -1,0 +1,11 @@
+web:
+  build: .
+  volumes:
+   - ./:/app
+  ports:
+    - "8000:8000"
+#  links:
+#    - db
+  command: cd /src
+  command: gulp 
+

@@ -14,8 +14,8 @@ let internals = {
 internals.manifest = {
     $meta: 'App manifest document',
     server: {
-        address : 'localhost',
-        host : 'localhost',
+        address : '0.0.0.0',
+        host : '0.0.0.0',
         port: 8000
     },
     register: {

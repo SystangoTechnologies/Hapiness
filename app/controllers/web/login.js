@@ -12,11 +12,15 @@ exports.showForm = {
         strategy: 'standard'
     },
     handler: (request, h) => {  
-        if (request.auth.isAuthenticated) {
-            var userDetails = request.auth.credentials;
-            return h.redirect('/dashboard', {user: userDetails});
+        try {
+            if (request.authss.isAuthenticated) {
+                var userDetails = request.auth.credentials;
+                return h.redirect('/dashboard', {user: userDetails});
+            }
+           return h.view('auth/login');  
+        } catch (error) {
+            return h.view('auth/login');  
         }
-       return h.view('auth/login');
     }
 };
 

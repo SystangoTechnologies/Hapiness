@@ -23,7 +23,7 @@ async function startServer () {
             layout: 'default'
         });
         await server.start();
-        console.log('Server has been started');
+        console.info(`Server started at ${ server.info.uri }`);
     }
     catch (err) {
         console.error(err);
