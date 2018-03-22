@@ -5,8 +5,8 @@ exports.plugin = {
        
     var Controllers = {
         core: {
-            fallback: require('../../controllers/web/core/fallback'),
-            static: require('../../controllers/web/core/static')
+            fallback: require('../../controllers/web/fallback'),
+            static: require('../../controllers/web/static')
         }
     };
 

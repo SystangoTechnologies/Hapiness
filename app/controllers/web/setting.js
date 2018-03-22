@@ -2,8 +2,8 @@
 const Mongoose = require('mongoose');
 const User = Mongoose.model('User');
 const Joi = require('joi');
-const Email = require('../email/email');
-const settingHelper = require('../../../helpers/setting');
+const Email = require('./email');
+const settingHelper = require('../../helpers/setting');
 
 //get admin password change page
 exports.setting = {
@@ -88,12 +88,13 @@ exports.sendPasswordResetLink = {
         try {
             var email = request.payload.email;
             let data = await settingHelper.generateResetPasswordToken(email);
-            var baseURL = request.connection.info.uri;
+            var baseURL = request.info.host;
             let message = await Email.sentForgotPasswordMail(data, baseURL);
             request.yar.flash('success', message);
             return h.redirect('/forgot');
         } catch (error) {
-            request.yar.flash('error', error);
+            console.log('error',error);
+            request.yar.flash('error', error.message);
             return h.redirect('/forgot');
         }
     }

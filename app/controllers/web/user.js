@@ -2,7 +2,7 @@
 const Mongoose = require('mongoose');
 const User = Mongoose.model('User');
 const Joi = require('joi');
-const Email = require('../email/email');
+const Email = require('./email');
 
 
 //get admin profile page

@@ -6,10 +6,10 @@ exports.plugin = {
     register: (plugin, options) => {
         const Controllers = {
             auth: {
-                login: require('../../controllers/web/auth/login'),
-                signup: require('../../controllers/web/auth/signup'),
-                logout: require('../../controllers/web/auth/logout'),
-                networks: require('../../controllers/web/auth/networks')
+                login: require('../../controllers/web/login'),
+                signup: require('../../controllers/web/signup'),
+                logout: require('../../controllers/web/logout'),
+                networks: require('../../controllers/web/networks')
             }
         };
     

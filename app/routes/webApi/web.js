@@ -5,7 +5,7 @@ exports.plugin = {
       
         const Controllers = {
             webapi: {
-                users: require('../../controllers/web/users/user')
+                users: require('../../controllers/web/user')
             }
         };
         plugin.route([

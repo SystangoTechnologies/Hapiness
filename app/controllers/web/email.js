@@ -1,5 +1,5 @@
 'use strict';
-var Email =  require('../../../../lib/email');
+var Email =  require('../../../lib/email');
 const Promise = require('promise');
 
 exports.sentForgotPasswordMail = function(data, baseUrl) {

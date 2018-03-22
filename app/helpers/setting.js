@@ -1,6 +1,8 @@
 'use strict';
 const Mongoose = require('mongoose');
 const User = Mongoose.model('User');
+const Crypto = require('crypto');
+
 
 exports.updatePassword = (request, old_pwd, new_pwd) => {
     return new Promise(async (resolve, reject) => {

@@ -23,7 +23,7 @@ async function startServer () {
             layout: 'default'
         });
         await server.start();
-        console.log('hapi days!');
+        console.log('Server has been started');
     }
     catch (err) {
         console.error(err);

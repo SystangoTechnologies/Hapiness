@@ -53,6 +53,8 @@ internals.config = {
         }
     },
     email: {
+        host : process.env.MAIL_HOST,
+        port : process.env.MAIL_PORT,
         email: process.env.GMAIL_ID,
         password: process.env.GMAIL_PASSWORD,
         senderEmail: process.env.GMAIL_SENDEREMAIL,

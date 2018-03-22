@@ -3,7 +3,7 @@ exports.plugin = {
     register: (plugin, options) => {
         const Controllers = {
             dashboard: {
-                dashboard: require('../../controllers/web/dashboard/dashboard')
+                dashboard: require('../../controllers/web/dashboard')
             }
         };
     
