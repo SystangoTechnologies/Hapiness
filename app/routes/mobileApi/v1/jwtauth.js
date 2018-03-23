@@ -4,7 +4,7 @@ exports.plugin = {
     register: (plugin, options) => {
         const Controllers = {
             auth: {
-                login: require('../../../controllers/api/v1/jwtlogin')
+                login: require('../../../controllers/api/jwtlogin')
             }
         };
         // Base path for mobile api for version 1

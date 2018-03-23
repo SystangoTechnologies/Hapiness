@@ -19,14 +19,8 @@ internals.config = {
         web: {
             $filter: 'env',
             test: 9000,
-            production: process.env.WEB_PORT,
+            production: process.env.PORT,
             $default: 8000
-        },
-        api: {
-            $filter: 'env',
-            test: 9001,
-            production: process.env.API_PORT,
-            $default: 8001
         }
     },
     tlsOptions: {

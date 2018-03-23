@@ -39,5 +39,6 @@ node_modules/
 *.sublime-workspace
 
 # Project specific ignore
-./log/hapiness.log
+ logs/
 .build
+.env

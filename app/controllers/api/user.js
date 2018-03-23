@@ -1,6 +1,9 @@
 'use strict';
 const Joi = require('joi');
-const UserHelper = require('../../../helpers/user');
+const UserHelper = require('../../helpers/user');
+
+/* ================================== Controllers for V1 ============================== */
+
 
 //get admin profile page
 exports.getUserDetails = {
@@ -9,6 +12,7 @@ exports.getUserDetails = {
     handler: async (request, h) => {
         try {
             let userId = request.headers.userId;
+            // Use helper method to defind service.
             let userDetails = await UserHelper.findUserDetails(userId);
             return h.response({
                 userDetails: userDetails
@@ -19,3 +23,6 @@ exports.getUserDetails = {
     },
     tags: ['api'] //swagger documentation
 };
+
+
+/* ================================== Controllers for V2 ============================== */

@@ -14,8 +14,7 @@ let internals = {
 internals.manifest = {
     $meta: 'App manifest document',
     server: {
-        address : '0.0.0.0',
-        host : '0.0.0.0',
+        host : process.env.SERVER_HOST,
         port: 8000
     },
     register: {
@@ -92,6 +91,7 @@ internals.manifest = {
                         title: 'Test API Documentation',
                         version: Pack.version,
                     },
+                    host: process.env.SWAGGER_HOST,
                     securityDefinitions: {
                         'jwt': {
                             'type': 'apiKey',
@@ -173,6 +173,9 @@ internals.manifest = {
         },
         {
             plugin: './app/routes/mobileApi/v1/user.js'
+        },
+        {
+            plugin: './app/routes/mobileApi/v2/user.js'
         }
         /* ----------------- End mobile api routes -------------- */
 

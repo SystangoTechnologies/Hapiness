@@ -4,7 +4,7 @@ exports.plugin = {
     register: (plugin, options) => {
         const Controllers = {
             user: {
-                user: require('../../../controllers/api/v1/user')
+                user: require('../../../controllers/api/user')
             }
         };
         // Base path for mobile api for version 1

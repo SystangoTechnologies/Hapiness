@@ -3,22 +3,21 @@
 exports.plugin = {  
     register: (plugin, options) => {
         const Controllers = {
-            auth: {
-                login: require('../../../controllers/api/jwtlogin'),
+            user: {
+                user: require('../../../controllers/api/user')
             }
         };
         // Base path for mobile api for version 1
         const basePath = '/api/v2/';
         plugin.route([
-            // JWT Auth Routes
             {
-                method: 'POST',
-                path: basePath+'login',
-                config: Controllers.auth.login.postCredentials
+                method: 'GET',
+                path: basePath+'userDetails',
+                config: Controllers.user.user.getUserDetails
             }
         ]);
     
     },
     pkg: require('../../../../package.json'),
-    name : 'jwtauth_routes_v2'
+    name : 'user_routes_v2'
 };
