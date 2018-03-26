@@ -39,7 +39,7 @@ internals.config = {
             uri: process.env.DATABASE_URL
         },
         test: {
-            uri: process.env.DATABASE_URL
+            uri:'mongodb://localhost:27017/hapinessTest'
         },
         $default: {
             uri: process.env.DATABASE_URL   ,

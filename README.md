@@ -95,24 +95,23 @@ However, for production the credentials should be set as environment variables.
 We're using semi-colons and comma-last. No rhyme or reason; and some of the hapi [code convention guidelines](http://hapijs.com/styleguide). All client-side js code is also in commonJS pattern packs using webpack. Check out `.eslintrc` for additional code conventions used.
 
 ## .env Configuration
-  
-  Create .env file on root foler define following property
+Create .env file on root foler and define following property
 
-    DEBUGGER=false        // enable disable debug mode.
-    NODE_ENV=development  //Node environment development/production
-    PORT=8000            // Server Port
-    SERVER_HOST=0.0.0.0  // Hapi Server host
-    COOKIE_SECRET=MyCookieSecret_ThisShould_be_32_character_long
-    YAR_COOKIE_SECRET=MyYarCookieSecret_ThisShould_be_32_character_long
-    JWT_SECRET=MySecretKey_ThisShould_be_32_character_long
-    GMAIL_ID= Gmail Id from which mails has been send.
-    GMAIL_PASSWORD= Gmail password
-    GMAIL_SENDEREMAIL=Sender email to display in email.
-    GMAIL_SENDERNAME=Sender name to display in email.
-    MAIL_HOST=smtp.gmail.com // Mail host
-    MAIL_PORT=465  // Mail Port
-    DATABASE_URL=mongodb://localhost:27017/hapiness  //Mongo database url
-    SWAGGER_HOST=localhost:8000  // Host Url for Swagger.
+DEBUGGER=false        // enable disable debug mode.
+NODE_ENV=development  //Node environment development/production
+PORT=8000            // Server Port
+SERVER_HOST=0.0.0.0  // Hapi Server host
+COOKIE_SECRET=MyCookieSecret_ThisShould_be_32_character_long
+YAR_COOKIE_SECRET=MyYarCookieSecret_ThisShould_be_32_character_long
+JWT_SECRET=MySecretKey_ThisShould_be_32_character_long
+GMAIL_ID= Gmail Id from which mails has been send.
+GMAIL_PASSWORD= Gmail password
+GMAIL_SENDEREMAIL=Sender email to display in email.
+GMAIL_SENDERNAME=Sender name to display in email.
+MAIL_HOST=smtp.gmail.com // Mail host
+MAIL_PORT=465  // Mail Port
+DATABASE_URL=mongodb://localhost:27017/hapiness  //Mongo database url
+SWAGGER_HOST=localhost:8000  // Host Url for Swagger.
 
 ## Running the server locally
 
@@ -131,10 +130,10 @@ $ gulp
 The servers should be running at: <br/> [localhost:8000](https://localhost:8000)
 
 ## Running the server in Docker Container
- #Prerequisite For Docker Configuration
-  Docker and Docker compose must be install on the system.
+#Prerequisite For Docker Configuration
+Docker and Docker compose must be install on the system.
 
- #Steps to run app in docker container :-
+#Steps to run app in docker container :-
   1. Go to project folder
   2. Create build using cmd :- $ docker-compose build
   3. Up server in background using cmd:- $ docker-compose up -d  
@@ -142,8 +141,6 @@ The servers should be running at: <br/> [localhost:8000](https://localhost:8000)
 
 ## REST API Versioning
   Currently Hapiness support 2 versions of rest api for that we need to clone routes of v1 in v2 then define controller for V2 and call it from route V2.
-
-
 
 ## Contributors
 [Systango-Technologies](https://github.com/sytango-technologies)

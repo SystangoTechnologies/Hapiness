@@ -5,7 +5,7 @@ const Nodemon = require('gulp-nodemon');
 Gulp.task('nodemon', function() {
 
     const nodeArgs = [];
-    if (process.env.DEBUGGER) {
+    if (process.env.DEBUGGER === 'true') {
         nodeArgs.push('--inspect');
     }
     Nodemon({

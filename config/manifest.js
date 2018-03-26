@@ -167,16 +167,22 @@ internals.manifest = {
         {
             plugin: './app/routes/mobileApi/v1/jwtauth.js'
         },
+        {
+            plugin: './app/routes/mobileApi/v1/user.js'
+        },
+        {
+            plugin: './app/routes/mobileApi/v1/signup.js'
+        },
            /* Version v2 apis */
         {
             plugin: './app/routes/mobileApi/v2/jwtauth.js'
         },
         {
-            plugin: './app/routes/mobileApi/v1/user.js'
+            plugin: './app/routes/mobileApi/v2/user.js'
         },
         {
-            plugin: './app/routes/mobileApi/v2/user.js'
-        }
+            plugin: './app/routes/mobileApi/v2/signup.js'
+        },
         /* ----------------- End mobile api routes -------------- */
 
         ]

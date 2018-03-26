@@ -4,6 +4,7 @@ const Mongoose = require('mongoose');
 const Joi = require('joi');
 const Boom = require('boom');
 const User = Mongoose.model('User');
+const signupHelper = require('../../helpers/signup');
 
 exports.showForm = {
     description: 'Returns the signup page',
@@ -54,15 +55,20 @@ exports.postForm = {
             }
             // Although Joi does not allow any extra parameter.
             // This is just to safe check any dev/human error.
-            var user = new User({
+            var user = {
                 name: request.payload.name,
                 password: request.payload.password,
                 email: request.payload.email,
-            });
+            };
             // Then save the user
-            let userData = await user.save();
-            request.cookieAuth.set(user);
-            return h.redirect('/dashboard');
+            let data = await signupHelper.signUpUser(user);
+            if (data.statusCode === 201) {
+                request.cookieAuth.set(data.user);
+                return h.redirect('/dashboard');
+            } else {
+                request.yar.flash('error', data.message);
+                return h.redirect('/signup'); 
+            } 
         } catch (error) {
             if (error.code === 11000) {
                 console.log('Email already exists.');
