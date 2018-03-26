@@ -47,6 +47,8 @@ exports.userSignUp = {
                     userId : data.user.id
                 }; // object info you want to sign
                 let jwtToken = JWT.sign(obj, secret, { expiresIn: '1 day' });
+                data.user.password = undefined;
+                data.user.salt = undefined;
                 var response = h.response({ message : data.message, user : data.user });
                 response.header('Authorization', jwtToken);
                 response.code(201);
