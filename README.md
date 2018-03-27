@@ -3,9 +3,6 @@
 ## Hapiness
 Production ready Hapi boilerplate application.
 
-## Credits
-Thanks to [ravisuhag/jolly](https://github.com/ravisuhag/jolly) for his wonderful boilerplate app which became the base of Hapiness.
-
 ## Description
 'Hapiness' boilerplate application serves as a great starting point for all the Hapi.js developers who were looking for a platform for their production server.
 
@@ -32,12 +29,11 @@ tls: Config.get('/tlsOptions')
 User may replace their gmail credentials in the .env file for debugging purpose on local environment.
 However, for production the credentials should be set as environment variables.
 
-## TO-DO
-
 
 ## Technology
 
 - **Hapi** - Server side framework
+- **Docker** - Docker container support
 - **Handlebar** - HTML templating engine
 - **Mongoose** - Mongo database ORM
 - **SASS** - CSS preprocessor 
@@ -49,6 +45,7 @@ However, for production the credentials should be set as environment variables.
 - **Config** - Configuration Handler
 - **PM2** - Production process manager for Node.js apps
 - **Nodemailer** - Module to send emails
+- **Mocha** - Unit test framework
 
 
 ## Application Structure
@@ -86,6 +83,8 @@ However, for production the credentials should be set as environment variables.
 ├──.babelrc                // Babel config
 ├──.eslintrc               // Define eslint rules.
 ├──.eslintignore           // Ignores certain files for eslint rules
+├──Dockerfile              // Standard doceker file
+├──docker-compose.yml      // Standard docker compose file 
 ├──gulpfile.js             // Gulp entry file 
 ├──server.js               // Contains all app configurations
 ├──.env                    // dotenv configuration file for environment variable 
@@ -100,31 +99,31 @@ However, for production the credentials should be set as environment variables.
 We're using semi-colons and comma-last. No rhyme or reason; and some of the hapi [code convention guidelines](http://hapijs.com/styleguide). All client-side js code is also in commonJS pattern packs using webpack. Check out `.eslintrc` for additional code conventions used.
 
 ## .env Configuration
-Create .env file on root foler and define following property
+To simulate environment variables in Dev environment, please create .env file at the root location and define the following properties -
 
 ```
-DEBUGGER=false        // enable disable debug mode.
-NODE_ENV=development  //Node environment development/production
-PORT=8000            // Server Port
-SERVER_HOST=0.0.0.0  // Hapi Server host
-COOKIE_SECRET=MyCookieSecret_ThisShould_be_32_character_long
-YAR_COOKIE_SECRET=MyYarCookieSecret_ThisShould_be_32_character_long
-JWT_SECRET=MySecretKey_ThisShould_be_32_character_long
-GMAIL_ID= Gmail Id from which mails has been send.
-GMAIL_PASSWORD= Gmail password
-GMAIL_SENDEREMAIL=Sender email to display in email.
-GMAIL_SENDERNAME=Sender name to display in email.
-MAIL_HOST=smtp.gmail.com // Mail host
-MAIL_PORT=465  // Mail Port
-DATABASE_URL=mongodb://localhost:27017/hapiness  //Mongo database url
-SWAGGER_HOST=localhost:8000  // Host Url for Swagger.
+DEBUGGER=false                                      // Enable/disable debug mode
+NODE_ENV=development                                // Node environment development/production
+PORT=8000                                           // Server Port
+SERVER_HOST=0.0.0.0                                 // Hapi Server host
+COOKIE_SECRET=This_Should_be_32_characters_long
+YAR_COOKIE_SECRET=This_Should_be_32_characters_long
+JWT_SECRET=This_Should_be_32_characters_long
+GMAIL_ID=Sender's Gmail Id
+GMAIL_PASSWORD=Gmail password
+GMAIL_SENDEREMAIL=Display email id for sender       // Could be same or different than GMAIL_ID
+GMAIL_SENDERNAME=Sender's name to display in email
+MAIL_HOST=smtp.gmail.com                            // Mail host
+MAIL_PORT=465                                       // Mail Port
+DATABASE_URL=mongodb://localhost:27017/hapiness     // Mongo database url
+SWAGGER_HOST=localhost:8000                         // Host Url for Swagger
 
 ```
 
 ## Running the server locally
 
  - Install  `node`, `npm`
- - Define env Configuration
+ - Define env configuration
  - Run these commands
 
 ```sh
@@ -139,21 +138,20 @@ The servers should be running at: <br/> [localhost:8000](https://localhost:8000)
 
 ## Running the server in Docker Container
 
-#Prerequisite For Docker Configuration
+Prerequisite For Docker Configuration : Docker and docker compose must be installed on the system.
 
-Docker and docker compose must be install on the system.
-
-#Steps to run app in docker container :-
-  1. Go to project folder
-  2. Create build using cmd :- $ docker-compose build
-  3. Up server in background using cmd:- $ docker-compose up -d  
-  4. Down the server using cmd :- $ docker-compose down
+Steps to run app in docker container :
+  1. CD to project dir
+  2. Create build using cmd: $ docker-compose build
+  3. Start the server in daemon thread using cmd: $ docker-compose up -d  
+  4. Stop the server using cmd : $ docker-compose down
 
 ## REST API Versioning
-  Currently Hapiness support 2 versions of rest api for that we need to clone routes of v1 in v2 then define controller for V2 and call it from route V2.
+ Hapiness now supports versioning out of the box. For sample purposes, v1 and v2 folders with appropriate route handlers are shared with this boilerplate. The versioning is done at the router's level only. Services are still placed at a single place with no support for versioning.
 
 ## Testing
-- Run these commands
+Hapiness now supports writting unit test cases using 'Mocha' and 'Supertest' node packages.
+- To execute the test cases please run the following command -
 
 ```sh
 # Test the server
@@ -161,10 +159,13 @@ $ npm test
 
 ```
 ## Hapiness Upgrade Guide.
+We have upgraded from Hapi v16.x to LTS v17.2.3
 
-#Create Plugins and Their Exports
+The new Hapi.js version brought along a series of breaking changes from its predecessor. Summarising all of those is out of scope of this guide, however we have placed the link of the document we referred while doing this upgrade at the bootom of this readme. Following are the major changes we faced and thought are worth sharing with our followers -
 
-To comply with the new structure, update your plugins to use a named export plugin that provides an object containing all the information. At least the register function that takes the server and options object.
+#Creating plugins
+
+To comply with the new structure, update your plugins to use a named export plugin that provides an object containing all the information. Please note that the register function now takes only the server and options object (got rid of next callback).
 
 #hapi v16
 
@@ -188,9 +189,9 @@ exports.plugin = {
 }
 ```
 
-#Directly Return in Route Handlers, No More “reply()” Callback
+#No More 'reply()' callbacks
 
-With hapi v17 you can return values from route handlers directly. The reply interface isn’t available anymore. It was more of a callback with extra functionality that you could use to create, change and hold a response, before sending it.
+With hapi v17.x you can return values from route handlers directly, the reply interface isn’t available anymore.
 
 #hapi v16
 
@@ -247,7 +248,8 @@ const handler = (request, h) => {
     .code(201)
 }
 ```
-For complete upgrade guide to upgrade hapi16 to hapi 17 Refer below link:-
+
+For complete upgrade guide to upgrade from hapi 16.x to hapi 17.x please refer the link below:
 
 https://futurestud.io/tutorials/hapi-v17-upgrade-guide-your-move-to-async-await
 

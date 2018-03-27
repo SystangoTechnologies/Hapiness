@@ -11,7 +11,7 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "author": "systango-technologies",
+  "author": "Arpit Khandelwal",
   "homepage": "https://github.com/sytango-technologies/Hapiness/blob/master/README.md",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -84,7 +84,10 @@
     "hapi server",
     "api",
     "node.js",
-    "hapi.js"
+    "hapi.js",
+    "Docker",
+    "Mocha",
+    "Chai"
   ],
   "license": "MIT",
   "maintainers": [
