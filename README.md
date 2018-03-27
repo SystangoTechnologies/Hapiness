@@ -252,5 +252,6 @@ For complete upgrade guide to upgrade hapi16 to hapi 17 Refer below link:-
 https://futurestud.io/tutorials/hapi-v17-upgrade-guide-your-move-to-async-await
 
 ## Contributors
-[Systango-Technologies](https://github.com/sytango-technologies)
+[Arpit Khandelwal](https://www.linkedin.com/in/arpitkhandelwal1984/)
+[Vikas Patidar](https://www.linkedin.com/in/vikas-patidar-0106/)
 
