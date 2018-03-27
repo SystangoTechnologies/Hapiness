@@ -117,4 +117,4 @@ The servers should be running at: <br/> 1) [localhost:8000](https://localhost:80
 
 ## Contributors
 
-[Systango-Technologies](https://github.com/sytango-technologies)
+[Arpit Khandelwal](https://www.linkedin.com/in/arpitkhandelwal1984/)
