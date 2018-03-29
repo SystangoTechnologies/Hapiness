@@ -13,7 +13,7 @@ exports.showForm = {
     },
     handler: (request, h) => {  
         try {
-            if (request.authss.isAuthenticated) {
+            if (request.auth.isAuthenticated) {
                 var userDetails = request.auth.credentials;
                 return h.redirect('/dashboard', {user: userDetails});
             }
