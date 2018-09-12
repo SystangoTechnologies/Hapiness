@@ -69,7 +69,7 @@ However, for production the credentials should be set as environment variables.
 │   │   ├── js             // User defined scripts
 │   │   └── vendor         // Vendor scripts.
 │   └── styles             // All SASS stylesheets
-├──config                  // Contains all app configurations
+├── config                 // Contains all app configurations
 │   ├── assets.js          // Assets configuration file
 │   ├── config.js          // Application configuration. 
 │   ├── default.json       // Configuration file.
@@ -79,15 +79,15 @@ However, for production the credentials should be set as environment variables.
 ├── lib                    // Core application lib/plugins
 ├── logs                   // Contains app log file 
 └── tasks                  // Contains all gulp tasks
-├──.gitignore              // standard git ignore file
-├──.babelrc                // Babel config
-├──.eslintrc               // Define eslint rules.
-├──.eslintignore           // Ignores certain files for eslint rules
-├──Dockerfile              // Standard doceker file
-├──docker-compose.yml      // Standard docker compose file 
-├──gulpfile.js             // Gulp entry file 
-├──server.js               // Contains all app configurations
-├──.env                    // dotenv configuration file for environment variable 
+├── .gitignore             // standard git ignore file
+├── .babelrc               // Babel config
+├── .eslintrc              // Define eslint rules.
+├── .eslintignore          // Ignores certain files for eslint rules
+├── Dockerfile             // Standard doceker file
+├── docker-compose.yml     // Standard docker compose file 
+├── gulpfile.js            // Gulp entry file 
+├── server.js              // Contains all app configurations
+├── .env                   // dotenv configuration file for environment variable 
 └── test
     ├── testcases          // Testcases organised by module names.
     └── test.js            // Test file.
@@ -103,7 +103,7 @@ To simulate environment variables in Dev environment, please create .env file at
 
 ```
 DEBUGGER=false                                      // Enable/disable debug mode
-NODE_ENV=development                                // Node environment development/production
+NODE_ENV=production                                 // Node environment development/production
 PORT=8000                                           // Server Port
 SERVER_HOST=0.0.0.0                                 // Hapi Server host
 COOKIE_SECRET=This_Should_be_32_characters_long
@@ -115,22 +115,27 @@ GMAIL_SENDEREMAIL=Display email id for sender       // Could be same or differen
 GMAIL_SENDERNAME=Sender's name to display in email
 MAIL_HOST=smtp.gmail.com                            // Mail host
 MAIL_PORT=465                                       // Mail Port
-DATABASE_URL=mongodb://localhost:27017/hapiness     // Mongo database url
 SWAGGER_HOST=localhost:8000                         // Host Url for Swagger
+DATABASE_URL=mongodb://localhost:27017/hapiness     // Mongo database url
+#DATABASE_URL=mongodb://mongodb:27017/hapiness      // Mongo database url while using docker
 
 ```
+Please make sure you remove any _.env_ file present at the root of this project before you invoke docker-compose or else docker will pick up the enviroment variables from this file and may lead to inconsistent results.
 
 ## Running the server locally
 
  - Install  `node`, `npm`
- - Define env configuration
- - Run these commands
+ - Define env variables
+ - Run the following commands
 
 ```sh
 # Install deps
 $ npm install
 
-# Run the node server
+# Run the node server in dev mode
+$ gulp dev
+
+# Run the node server in production mode
 $ gulp
 
 ```
@@ -146,8 +151,10 @@ Steps to run app in docker container :
   3. Start the server in daemon thread using cmd: $ docker-compose up -d  
   4. Stop the server using cmd : $ docker-compose down
 
+In case you are willing to use this project as is (i.e. without external mongodb installation), the docker-compose provided with this project should suffice. It brings along a _mongodb_ service which stores the data in the _/db/data_ directory. But in case you wish to use your existing MongoDB installation then please remove the _mongodb_ service from the docker-compose.yml file and correct the database_url environment variable.
+
 ## REST API Versioning
- Hapiness now supports versioning out of the box. For sample purposes, v1 and v2 folders with appropriate route handlers are shared with this boilerplate. The versioning is done at the router's level only. Services are still placed at a single place with no support for versioning.
+Hapiness now supports versioning out of the box. For sample purposes, v1 and v2 folders with appropriate route handlers are shared with this boilerplate. The versioning is done at the router's level only. Services are still placed at a single place with no support for versioning.
 
 ## Testing
 Hapiness now supports writting unit test cases using 'Mocha' and 'Supertest' node packages.
@@ -158,100 +165,8 @@ Hapiness now supports writting unit test cases using 'Mocha' and 'Supertest' nod
 $ npm test
 
 ```
-## Hapiness Upgrade Guide.
-We have upgraded from Hapi v16.x to LTS v17.2.3
-
-The new Hapi.js version brought along a series of breaking changes from its predecessor. Summarising all of those is out of scope of this guide, however we have placed the link of the document we referred while doing this upgrade at the bootom of this readme. Following are the major changes we faced and thought are worth sharing with our followers -
-
-#Creating plugins
-
-To comply with the new structure, update your plugins to use a named export plugin that provides an object containing all the information. Please note that the register function now takes only the server and options object (got rid of next callback).
-
-#hapi v16
-
-```
-exports.register = (server, options, next) => { … }
-
-exports.register.attributes = {  
-    pkg: require('../package.json')
-};
-
-```
-
-#hapi v17
-
-```
-exports.plugin = {  
-  register: (server, options) => {
-    …
-  },
-  pkg: require('../package.json')
-}
-```
-
-#No More 'reply()' callbacks
-
-With hapi v17.x you can return values from route handlers directly, the reply interface isn’t available anymore.
-
-#hapi v16
-
-```
-server.ext('onPreResponse', (request, reply) => { … })
-
-const handler = (request, reply) => {  
-  // return a string
-  return reply('ok')
-
-  // return an object and hapi creates JSON out of it
-  return reply({ name: 'Future Studio', makeItRock: true })
-
-  // redirect … to 404 … hehehehe :D
-  return reply.redirect('/404')
-
-  // return a view
-  return reply.view('index', { name: 'Future Studio' })
-
-  // use the "reply" to create a response with chained methods
-  return reply(someHTML)
-    .type('text/html')
-    .header('X-Custom', 'my-value')
-    .code(201)
-}
-
-```
-
-#hapi v17
-```
-// the new structure applies to lifecycle points and request handlers
-// here are some examples on how to use the new response toolkit
-
-server.ext('onPreResponse', (request, h) => { … })
-
-const handler = (request, h) => {  
-  // return a string
-  return 'ok'
-
-  // return an object and hapi creates JSON out of it
-  return { name: 'Future Studio', makeItRock: true }
-
-  // redirect … to 404 
-  return h.redirect('/404')
-
-  // return a view
-  return h.view('index', { name: 'Future Studio' })
-
-  // use the "h" response toolkit to create a response
-  return h
-    .response(someHTML)
-    .type('text/html')
-    .header('X-Custom', 'my-value')
-    .code(201)
-}
-```
-
-For complete upgrade guide to upgrade from hapi 16.x to hapi 17.x please refer the link below:
-
-https://futurestud.io/tutorials/hapi-v17-upgrade-guide-your-move-to-async-await
+## Upgrade to Hapi v17.x
+The upgrade guid from earlier versions to v17.x can be found [here](https://github.com/sytango-technologies/Hapiness/blob/master/upgrade/Readme.md)
 
 ## Contributors
 [Arpit Khandelwal](https://www.linkedin.com/in/arpitkhandelwal1984/)

@@ -11,7 +11,6 @@ let internals = {
     }
 };
 
-
 //  Confidence document object
 internals.config = {
     $meta: 'App configuration file',
@@ -42,7 +41,7 @@ internals.config = {
             uri:'mongodb://localhost:27017/hapinessTest'
         },
         $default: {
-            uri: process.env.DATABASE_URL   ,
+            uri: process.env.DATABASE_URL,
             options: {}
         }
     },
@@ -71,7 +70,7 @@ internals.config = {
     },
     good: {
         ops: {
-        interval: 1000
+            interval: 1000
         },
         reporters: {
             myConsoleReporter: [{

@@ -1,9 +1,13 @@
-FROM node:8.10.0
+FROM node:alpine
 
 WORKDIR /src
 
-RUN npm install -g gulp
+COPY package*.json ./
 
-RUN npm install
+RUN npm install --only=production
 
-COPY . /src
+COPY . .
+
+EXPOSE 8000
+
+CMD [ "npm", "start" ]

@@ -15,7 +15,7 @@ internals.manifest = {
     $meta: 'App manifest document',
     server: {
         host : process.env.SERVER_HOST,
-        port: 8000
+        port: process.env.PORT
     },
     register: {
         plugins : [
