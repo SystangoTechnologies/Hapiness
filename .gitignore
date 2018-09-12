@@ -33,6 +33,8 @@ node_modules/
 # Optional REPL history
 .node_repl_history
 
+# Mac OS
+.DS_Store
 
 # Sublime Project Files
 *.sublime-project

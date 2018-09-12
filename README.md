@@ -52,8 +52,8 @@ However, for production the credentials should be set as environment variables.
 ```
 ├── app
 │   ├── controllers
-│   │   ├── api            // Controllers are organised by module names for rest api 
-│   │   └── web            // Controllers are organised by module names for web api.
+│   │   ├── api            // Controllers are organized by module names for rest api 
+│   │   └── web            // Controllers are organized by module names for web api.
 │   ├── helpers            // Helpers contains methods that are access by both api and                                web controllers.
 │   ├── models             // All mongoose models are defined here
 │   ├── routes             // All app routes are defined here
@@ -89,7 +89,7 @@ However, for production the credentials should be set as environment variables.
 ├── server.js              // Contains all app configurations
 ├── .env                   // dotenv configuration file for environment variable 
 └── test
-    ├── testcases          // Testcases organised by module names.
+    ├── testcases          // Testcases organized by module names.
     └── test.js            // Test file.
 
 ```
@@ -120,7 +120,7 @@ DATABASE_URL=mongodb://localhost:27017/hapiness     // Mongo database url
 #DATABASE_URL=mongodb://mongodb:27017/hapiness      // Mongo database url while using docker
 
 ```
-Please make sure you remove any _.env_ file present at the root of this project before you invoke docker-compose or else docker will pick up the enviroment variables from this file and may lead to inconsistent results.
+Please make sure you remove any _.env_ file present at the root of this project before you invoke docker-compose or else docker will pick up the environment variables from this file and may lead to inconsistent results.
 
 ## Running the server locally
 
@@ -157,7 +157,7 @@ In case you are willing to use this project as is (i.e. without external mongodb
 Hapiness now supports versioning out of the box. For sample purposes, v1 and v2 folders with appropriate route handlers are shared with this boilerplate. The versioning is done at the router's level only. Services are still placed at a single place with no support for versioning.
 
 ## Testing
-Hapiness now supports writting unit test cases using 'Mocha' and 'Supertest' node packages.
+Hapiness now supports writing unit test cases using 'Mocha' and 'Supertest' node packages.
 - To execute the test cases please run the following command -
 
 ```sh
@@ -166,7 +166,7 @@ $ npm test
 
 ```
 ## Upgrade to Hapi v17.x
-The upgrade guid from earlier versions to v17.x can be found [here](https://github.com/sytango-technologies/Hapiness/blob/master/upgrade/Readme.md)
+The upgrade guide from earlier versions to v17.x can be found [here](https://github.com/sytango-technologies/Hapiness/blob/master/upgrade/Readme.md)
 
 ## Contributors
 [Arpit Khandelwal](https://www.linkedin.com/in/arpitkhandelwal1984/)
