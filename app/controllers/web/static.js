@@ -1,35 +1,35 @@
 'use strict';
 
 exports.css = {
-    directory: {
-        path: '.build/css'
-    }
+	directory: {
+		path: '.build/css'
+	}
 };
 
 exports.img = {
-    directory: {
-        path: '.build/images'
-    }
+	directory: {
+		path: '.build/images'
+	}
 };
 
 exports.js = {
-    directory: {
-        path: '.build/js'
-    }
+	directory: {
+		path: '.build/js'
+	}
 };
 exports.fonts = {
-    directory: {
-        path: '.build/fonts'
-    }
+	directory: {
+		path: '.build/fonts'
+	}
 };
 
 exports.favicon = {
-    file: '.build/favicon.ico'
+	file: '.build/favicon.ico'
 };
 
 exports.heartbeat = {
-    auth: false,
-    handler: async (request, h) => {
-        return 'ok';
-    }
+	auth: false,
+	handler: async (request, h) => {
+		return 'ok';
+	}
 };

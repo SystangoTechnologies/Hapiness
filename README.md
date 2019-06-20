@@ -9,12 +9,12 @@ Production ready Hapi boilerplate application.
 1) localhost:8000 - Serve web request <br />
 2) localhost:8000/api - Serve rest api request
 
-WEB and RESTAPI both have their independent authentication mechanisms, the web application uses the cookie based authentication and the RESTAPI uses the JWT authentication for access. The deployment and application management is done via 'Gulp' and there are different configurations/tasks for starting the app in the development vs the production environment. This application assumes the availability of 'MongoDB' installation on the localhost where the server will run.
+WEB and RESTAPI both have their independent authentication mechanisms, the web application uses the cookie based authentication and the RESTAPI uses the JWT authentication for access.  
 
 The app contains basic user management with login, logout, password reset, profile view.
 Forgot password implementation is done using 'nodemailer' (sends an email with reset password link with a unique token that expires in 1 hour).
 
-For production, we have used 'PM2' as the process manager which spawns 4 servers for the application and takes care of the rest of application life cycle management. All the environment variables are managed using 'dotenv' node package for development, the same will need to be configured at the host server in the production environment.
+For production, we have used 'PM2' as the process manager which spawns 1 servers for the application and takes care of the rest of application life cycle management. All the environment variables are managed using 'dotenv' node package for development, the same will need to be configured at the host server in the production environment.
 
 If you are using 'Chrome' for unit testing the application, you can Hapi-ly use the 'node-inspector' chrome plugin pre-configured with this app for debugging purposes.
 
@@ -37,7 +37,6 @@ However, for production the credentials should be set as environment variables.
 - **Handlebar** - HTML templating engine
 - **Mongoose** - Mongo database ORM
 - **SASS** - CSS preprocessor 
-- **Gulp** - Javascript tasks automation
 - **WebPack** - Asset pipeline
 - **Dotenv** - Environment variable emulator
 - **Good** - Logger mechanism
@@ -78,14 +77,12 @@ However, for production the credentials should be set as environment variables.
 │   └── ssl                // Contains ssl certificates
 ├── lib                    // Core application lib/plugins
 ├── logs                   // Contains app log file 
-└── tasks                  // Contains all gulp tasks
 ├── .gitignore             // standard git ignore file
 ├── .babelrc               // Babel config
 ├── .eslintrc              // Define eslint rules.
 ├── .eslintignore          // Ignores certain files for eslint rules
 ├── Dockerfile             // Standard doceker file
 ├── docker-compose.yml     // Standard docker compose file 
-├── gulpfile.js            // Gulp entry file 
 ├── server.js              // Contains all app configurations
 ├── .env                   // dotenv configuration file for environment variable 
 └── test
@@ -132,11 +129,15 @@ Please make sure you remove any _.env_ file present at the root of this project 
 # Install deps
 $ npm install
 
-# Run the node server in dev mode
-$ gulp dev
+# Install webpack-cli globally
+$ npm install webpack-cli -g
+
+# Run the node server in development mode
+$ npm start
 
 # Run the node server in production mode
-$ gulp
+$ npm run build
+$ npm run prod
 
 ```
 The servers should be running at: <br/> [localhost:8000](https://localhost:8000)

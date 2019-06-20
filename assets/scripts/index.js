@@ -2,7 +2,7 @@
 
 //Include all vendor files here
 //srequire('./vendor/jQuery/jquery-2.2.3.min.js');
-//require('./vendor/bootstrap.min.js');
+require('./vendor/bootstrap.min.js');
 require('./js/icheck.min.js');
 require('./vendor/fastclick/fastclick.js');
 require('./vendor/sparkline/jquery.sparkline.min.js');

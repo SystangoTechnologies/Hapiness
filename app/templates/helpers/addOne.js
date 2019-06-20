@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = function(value) {
-  return value + 1;
+	return value + 1;
 };
