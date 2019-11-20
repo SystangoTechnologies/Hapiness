@@ -11,7 +11,8 @@
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
     "prod": "pm2 start pm2.config.js --env production",
-    "test": "mocha"
+    "test": "mocha",
+    "mongo-start": "docker start mongo-dev || docker run --name mongo-dev -p 27017:27017 -d mongo:3.4.23"
   },
   "engines": {
     "node": ">=0.10.0"

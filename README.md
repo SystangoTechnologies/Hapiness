@@ -29,6 +29,8 @@ tls: Config.get('/tlsOptions')
 User may replace their gmail credentials in the .env file for debugging purpose on local environment.
 However, for production the credentials should be set as environment variables.
 
+## MongoDB
+Utilize Docker to install your MongoDB database without needing to install MongoDB driver locally.
 
 ## Technology
 
@@ -131,6 +133,9 @@ $ npm install
 
 # Install webpack-cli globally
 $ npm install webpack-cli -g
+
+# Run the mongo-start generate and start your mongodb using docker 
+$ npm start mongo-start
 
 # Run the node server in development mode
 $ npm start
